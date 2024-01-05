@@ -1,0 +1,27 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+
+    <%= render @visitor %>
+
+    <%= link_to "Edit this visitor", edit_visitor_path(@visitor), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to "Destroy this visitor", visitor_path(@visitor), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+    <%= link_to "Back to visitors", visitors_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+</div>
+
+<!-- app/views/visitors/show.html.erb -->
+<div class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
+  <h2 class="text-2xl font-semibold mb-4">Visitor Details</h2>
+
+  <p><strong>Full Name:</strong> <%= @visitor.full_name %></p>
+  <p><strong>Phone Number:</strong> <%= @visitor.phone_number %></p>
+  <p><strong>Residential Address:</strong> <%= @visitor.residential_address %></p>
+  <p><strong>Comment:</strong> <%= @visitor.comment %></p>
+
+  <%= link_to "Back to Registration", root_path, class: "mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+</div>

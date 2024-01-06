@@ -12,3 +12,64 @@
     <li>RSpec</li>
   </ul>
 </div>
+<!-- app/views/visitors/visualization.html.erb -->
+<div class="flex justify-between">
+  <div class="w-1/2">
+    <canvas id="visitorChart" width="400" height="400"></canvas>
+  </div>
+  <div class="w-1/2">
+    <table class="table-auto">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Gender</th>
+          <th class="px-4 py-2">Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @visitor_counts.each do |gender, count| %>
+          <tr>
+            <td class="border px-4 py-2"><%= gender %></td>
+            <td class="border px-4 py-2"><%= count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var ctx = document.getElementById('visitorChart').getContext('2d');
+    var data = {
+      labels: <%= @visitor_counts.keys.to_json.html_safe %>,
+      datasets: [{
+        label: 'Visitor Counts by Gender',
+        data: <%= @visitor_counts.values.to_json.html_safe %>,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          // Add more colors as needed
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          // Add more colors as needed
+        ],
+        borderWidth: 1
+      }]
+    };
+    var options = {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    };
+    var myBarChart = new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: options
+    });
+  });
+</script>

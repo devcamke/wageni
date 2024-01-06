@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.3.0"
 
 gem 'bcrypt', '~> 3.1', '>= 3.1.20'
+gem 'chart-js-rails'
 gem 'faker', '~> 3.2', '>= 3.2.2'
 gem 'image_processing', '~> 1.12', '>= 1.12.2'
 gem 'pg', '~> 1.5', '>= 1.5.4'
